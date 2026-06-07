@@ -1,9 +1,5 @@
-import Image from "next/image";
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  return (
-    <main>
-      <h1>Solstice Cipher</h1>
-    </main>
-  );
+  return redirect('/home');
 }
