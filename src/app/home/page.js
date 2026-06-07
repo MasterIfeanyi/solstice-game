@@ -1,6 +1,7 @@
 "use client";
 
 import Header from "../../components/Header/Header";
+import SplitScreen from "../../components/SplitScreen/SplitScreen";
 
 export default function Home() {
   const darkWidth = 50;
@@ -9,10 +10,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div style={{ display: "flex", width: "100vw", height: "100vh" }}>
-        <div style={{ width: `${darkWidth}%`, height: "100%", backgroundColor: "var(--game-dark)", transition: "width 0.6s ease" }} />
-        <div style={{ width: `${lightWidth}%`, height: "100%", backgroundColor: "var(--game-light)", transition: "width 0.6s ease" }} />
-      </div>
+      <SplitScreen darkWidth={darkWidth} lightWidth={lightWidth} />
     </>
   );
 }
