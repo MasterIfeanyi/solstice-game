@@ -1,40 +1,29 @@
 'use client'
-import {useEffect} from 'react'
+import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 
-const Modal = ({isShown, children, onClose}) => {
+const Modal = ({ isShown, children }) => {
+  const [mounted, setMounted] = useState(false);
 
-    useEffect(() => {
-        if (!isShown) return;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-        const handleEscape = (e) => {
-            if (e.key === 'Escape') onClose();
-        };
+  const modal = (
+    <div className="fixed w-full h-full inset-0 top-16 overflow-y-auto z-40 bg-black/70 backdrop-blur-sm animate-fadeIn">
+      {children}
+    </div>
+  );
 
-        document.addEventListener('keydown', handleEscape);
+  if (!mounted || !isShown) return null;
 
-        return () => document.removeEventListener('keydown', handleEscape);
-
-    }, [isShown, onClose])
-
-    const modal = (
-        <div className="fixed w-full h-full inset-0 top-16 overflow-y-auto z-40 bg-black/70 backdrop-blur-sm animate-fadeIn" onClick={(e) => {
-            if (e.target === e.currentTarget && onClose) {
-                onClose();
-            }
-        }}>
-            {children}
-        </div>
-    );
-
-    return isShown ? createPortal(modal, document.getElementById("modal-root")) : null;
+  return createPortal(modal, document.getElementById("modal-root"));
 }
 
 Modal.propTypes = {
   isShown: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
-  onClose: PropTypes.func.isRequired,
 }
 
 export default Modal

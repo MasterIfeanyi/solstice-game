@@ -13,6 +13,7 @@ export default function RootLayout({ children }) {
         <GameProvider>
           {children}
         </GameProvider>
+        <div id="modal-root" />
       </body>
     </html>
   );

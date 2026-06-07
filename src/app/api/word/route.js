@@ -21,8 +21,9 @@ function verifyCaesar(plain, cipher) {
     return encryptCaesar(plain) === cipher.toUpperCase();
 }
 
-export async function GET() {
+export async function POST(req) {
     try {
+        const { usedWords = [] } = await req.json();
         const seed = Math.floor(Math.random() * 1000000);
         const offset = Math.round(Math.random() * 999) + 1;
 
@@ -41,8 +42,9 @@ Rules:
 - The word must be ALL UPPERCASE
 - The cipher must be ALL UPPERCASE
 - No proper nouns
-- No repeating the same word twice in a row
-- The seed is ${seed} — use it to ensure uniqueness
+- The seed is ${seed} and offset is ${offset} — use both to ensure true uniqueness
+- You MUST NOT use any of these recently used words: ${usedWords.length > 0 ? usedWords.join(", ") : "none yet"}
+- Pick something completely different from that list
 `.trim();
 
         const formattedMessages = [
@@ -82,6 +84,19 @@ Rules:
         if (!response.ok) {
             const errorData = await response.json();
             console.error("OpenRouter error:", errorData);
+
+            if (response.status === 429) {
+                console.warn("Rate limit hit — switching to fallback word list.");
+                const { wordList } = await import("./wordList.js");
+                const available = wordList.filter((w) => !usedWords.includes(w.toUpperCase()));
+                const randomWord = available[Math.floor(Math.random() * available.length)].toUpperCase();
+                return NextResponse.json({
+                    word: randomWord,
+                    cipher: encryptCaesar(randomWord),
+                    fallback: true,
+                });
+            }
+
             return NextResponse.json(
                 { error: "Failed to reach Gemma." },
                 { status: 500 }
@@ -150,7 +165,10 @@ Rules:
             console.warn("Network failure detected — switching to fallback word list.");
 
             const { wordList } = await import("./wordList.js");
-            const randomWord = wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
+            const randomWord = wordList
+                .filter((w) => !usedWords.includes(w.toUpperCase()))
+            [Math.floor(Math.random() * (wordList.length - usedWords.length))]
+                .toUpperCase();
 
             return NextResponse.json({
                 word: randomWord,
