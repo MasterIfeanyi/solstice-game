@@ -18,6 +18,7 @@ const Button = ({
     const variantStyles = {
         primary: "bg-primary hover:bg-primary-dark text-white",
         danger: "bg-red-600 hover:bg-red-700 text-white",
+        game: "bg-[#FFC107] hover:bg-[#FFD54F] text-black",
         secondary:
             "bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-100",
         neutral:
@@ -61,6 +62,7 @@ Button.propTypes = {
         "danger",
         "neutral",
         "other",
+        "game"
     ]),
     size: PropTypes.oneOf(["small", "medium", "large"]),
     className: PropTypes.string,

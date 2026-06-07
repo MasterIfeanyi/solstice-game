@@ -12,8 +12,8 @@ const STORAGE_KEYS = {
 };
 
 export function GameProvider({ children }) {
-    const [darkWidth, setDarkWidth] = useState(() => getStoredItem(STORAGE_KEYS.darkWidth, 70));
-    const [lightWidth, setLightWidth] = useState(() => getStoredItem(STORAGE_KEYS.lightWidth, 30));
+    const [darkWidth, setDarkWidth] = useState(50);
+    const [lightWidth, setLightWidth] = useState(50);
     const [secretWord, setSecretWord] = useState("");
     const [cipherText, setCipherText] = useState("");
     const [guess, setGuess] = useState("");
@@ -23,6 +23,13 @@ export function GameProvider({ children }) {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const usedWordsRef = useRef([]);
+
+    useEffect(() => {
+  const storedDark = getStoredItem(STORAGE_KEYS.darkWidth, 50);
+  const storedLight = getStoredItem(STORAGE_KEYS.lightWidth, 50);
+  setDarkWidth(storedDark);
+  setLightWidth(storedLight);
+}, []);
 
     useEffect(() => {
         storeItem(STORAGE_KEYS.darkWidth, darkWidth);
