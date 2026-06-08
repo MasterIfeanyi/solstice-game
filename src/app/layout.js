@@ -5,17 +5,17 @@ export const metadata = {
   title: "Solstice Cipher — Decode the light before darkness wins",
   description:
     "A Caesar cipher game where light and darkness battle for the sky. Decode the cipher before the timer runs out and the darkness consumes everything.",
-  metadataBase: new URL("https://solstice-cipher.netlify.app"),
+  metadataBase: new URL("https://ifeanyi-solstice.netlify.app"),
 
   openGraph: {
     title: "Solstice Cipher — Decode the light before darkness wins",
     description:
       "A Caesar cipher game where light and darkness battle for the sky. Decode the cipher before the timer runs out and the darkness consumes everything.",
-    url: "https://solstice-cipher.netlify.app",
+    url: "https://ifeanyi-solstice.netlify.app",
     siteName: "Solstice Cipher",
     images: [
       {
-        url: "https://solstice-cipher.netlify.app/logo.png",
+        url: "https://ifeanyi-solstice.netlify.app/logo.png",
         width: 1200,
         height: 630,
         alt: "Solstice Cipher — Decode the light before darkness wins",
@@ -30,7 +30,7 @@ export const metadata = {
     title: "Solstice Cipher — Decode the light before darkness wins",
     description:
       "A Caesar cipher game where light and darkness battle for the sky. Decode the cipher before the timer runs out and the darkness consumes everything.",
-    images: ["https://solstice-cipher.netlify.app/logo.png"],
+    images: ["https://ifeanyi-solstice.netlify.app/logo.png"],
   },
 };
 
