@@ -46,9 +46,10 @@ export default function CipherModal() {
                                 {winner === "light" ? "The light has won." : "The darkness has consumed everything."}
                             </p>
                             <Button
-                                variant="primary"
+                                variant="game"
                                 size="large"
                                 onClick={resetGame}
+                                className={styles.restartBtn}
                             >
                                 Restart Game
                             </Button>
@@ -80,6 +81,7 @@ export default function CipherModal() {
                                     size="large"
                                     onClick={submitGuess}
                                     disabled={isLoading || !!error || !guess.trim()}
+                                    className={styles.actionBtn}
                                 >
                                     Submit
                                 </Button>
@@ -94,7 +96,7 @@ export default function CipherModal() {
                                         variant="game"
                                         size="large"
                                         onClick={handleNextWord}
-                                        className={styles.nextBtn}
+                                        className={styles.actionBtn}
                                     >
                                         Next Word
                                     </Button>
@@ -110,7 +112,7 @@ export default function CipherModal() {
                                         variant="game"
                                         size="large"
                                         onClick={handleNextWord}
-                                        className={styles.nextBtn}
+                                        className={styles.actionBtn}
                                     >
                                         Try Another Word
                                     </Button>

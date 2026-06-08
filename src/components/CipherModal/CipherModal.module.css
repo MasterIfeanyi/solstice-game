@@ -137,3 +137,17 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0.4; }
 }
+
+.restartBtn {
+  padding: 14px 24px !important;
+  font-size: 1rem !important;
+  border-radius: 8px !important;
+  margin-top: 8px;
+}
+
+.actionBtn {
+  padding: 14px 24px !important;
+  font-size: 1rem !important;
+  border-radius: 8px !important;
+  margin-top: 8px;
+}
