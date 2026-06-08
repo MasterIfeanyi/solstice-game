@@ -25,11 +25,12 @@ export function GameProvider({ children }) {
     const usedWordsRef = useRef([]);
 
     useEffect(() => {
-  const storedDark = getStoredItem(STORAGE_KEYS.darkWidth, 50);
-  const storedLight = getStoredItem(STORAGE_KEYS.lightWidth, 50);
-  setDarkWidth(storedDark);
-  setLightWidth(storedLight);
-}, []);
+        const storedDark = getStoredItem(STORAGE_KEYS.darkWidth, 50);
+        const storedLight = getStoredItem(STORAGE_KEYS.lightWidth, 50);
+        // eslint-disable-next-line
+        setDarkWidth(storedDark);
+        setLightWidth(storedLight);
+    }, []);
 
     useEffect(() => {
         storeItem(STORAGE_KEYS.darkWidth, darkWidth);
